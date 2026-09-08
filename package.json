@@ -1,0 +1,60 @@
+{
+  "name": "@plumblinehq/plumbline-checks",
+  "version": "0.1.0",
+  "description": "SEP conformance checks for Stellar anchors. Read-only library and CLI; never signs or submits anything.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "keywords": [
+    "stellar",
+    "anchor",
+    "sep",
+    "conformance",
+    "monitoring"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plumblinehq/plumbline-checks.git"
+  },
+  "bugs": {
+    "url": "https://github.com/plumblinehq/plumbline-checks/issues"
+  },
+  "homepage": "https://github.com/plumblinehq/plumbline-checks#readme",
+  "dependencies": {
+    "@stellar/stellar-sdk": "^17.0.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.5.0",
+    "eslint": "^10.10.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.9.6",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.70.0",
+    "vitest": "^5.0.0"
+  }
+}
