@@ -25,10 +25,16 @@ database, no scheduler, no server. Its only I/O is outbound HTTP.
 
 ## Development
 
-Install, test and build commands are documented here as they land with each
-stage of the build. Everything runs through npm; the lockfile is committed.
+Everything runs through npm; the lockfile is committed.
 
-- Tests must never touch the network — stub fetch. The single documented
+- `npm install` — install dependencies
+- `npm run lint` — ESLint
+- `npm run typecheck` — TypeScript strict, no emit
+- `npm test` — Vitest
+- `npm run build` — tsup, emits ESM + CJS + types into `dist/`
+
+- Tests must never touch the network — HTTP is stubbed at the probe boundary
+  (inject a fake resolver / fetch implementation). The single documented
   exception is the integration test against `testanchor.stellar.org`, and it is
   opt-in.
 - Every check ships with fixtures under `test/fixtures/`: at least one passing
