@@ -1,3 +1,4 @@
+import type { StellarToml } from "@stellar/stellar-sdk";
 import type { Env, HttpResponse } from "../../core.js";
 
 /**
@@ -16,4 +17,17 @@ export function tomlUrl(homeDomain: string): string {
  */
 export function fetchToml(env: Env): Promise<HttpResponse> {
   return env.http.get(tomlUrl(env.homeDomain));
+}
+
+/**
+ * A field from the parsed stellar.toml, absent-safe. Field-level checks read
+ * the file through this helper, which the runner makes safe to call: they
+ * declare `sep1.toml-parses` in `requires`, so `env.toml` is always set when
+ * they run.
+ */
+export function tomlValue<K extends keyof StellarToml.Api.StellarToml>(
+  env: Env,
+  field: K,
+): StellarToml.Api.StellarToml[K] | undefined {
+  return env.toml?.[field];
 }

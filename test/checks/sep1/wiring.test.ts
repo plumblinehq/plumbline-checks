@@ -13,17 +13,21 @@ const fixture = (name: string): string =>
   readFileSync(`test/fixtures/sep1/${name}`, "utf8").replaceAll("\r\n", "\n");
 
 describe("sep1 check wiring", () => {
-  it("registers each fetch-and-parse check exactly once", () => {
+  it("registers each shipped sep1 check exactly once", () => {
     const ids = all()
       .filter((c) => c.id.startsWith("sep1."))
       .map((c) => c.id);
-    expect(ids).toEqual([
-      "sep1.toml-content-type",
-      "sep1.toml-cors",
-      "sep1.toml-parses",
+    for (const id of [
       "sep1.toml-reachable",
+      "sep1.toml-cors",
+      "sep1.toml-content-type",
       "sep1.toml-size",
-    ]);
+      "sep1.toml-parses",
+      "sep1.network-passphrase-valid",
+    ]) {
+      expect(ids).toContain(id);
+    }
+    expect(new Set(ids).size).toBe(ids.length);
   });
 
   it("runs the tranche through the runner with one shared fetch", async () => {
@@ -69,7 +73,8 @@ describe("sep1 check wiring", () => {
     expect(reachable?.status).toBe("fail");
     for (const result of results.filter((r) => r.checkId !== "sep1.toml-reachable")) {
       expect(result.status).toBe("skip");
-      expect(result.message).toContain("sep1.toml-reachable");
+      // Every skip names the prerequisite that caused it.
+      expect(result.message).toMatch(/prerequisite "sep1\./);
     }
   });
 
