@@ -1,0 +1,45 @@
+name: Bug report
+description: Report a bug in the checks library or CLI
+title: "[bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filling out a bug report. If the bug is in a conformance
+        check, remember: a check must assert something the spec actually says,
+        and its `specRef` must point at real text in the SEP.
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+      description: What should happen?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+      description: What actually happens? Include the check ID and the check's message if relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: The command you ran, the home domain, the flags, and any output that helps.
+      placeholder: |
+        plumbline run --home-domain example.com --seps 1 --json
+        ...
+    validations:
+      required: true
+  - type: input
+    id: spec-ref
+    attributes:
+      label: Spec reference
+      description: If this concerns a check, the clause it enforces (e.g. SEP-1 §Specification, max file size). A `specRef` that does not correspond to real spec text is the worst kind of bug this project can have.
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Node version, package version (from `npm ls`), platform.

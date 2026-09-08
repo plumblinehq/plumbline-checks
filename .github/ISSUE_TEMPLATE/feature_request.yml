@@ -1,0 +1,40 @@
+name: Feature request
+description: Propose a new check or a change to an existing one
+title: "[feat]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For a new conformance check, the spec clause must exist before the code
+        does. Plumbline never writes a check from memory: every check enforces
+        text that exists in a Stellar Ecosystem Proposal.
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: What problem does this solve for anchor operators, wallets, or users?
+    validations:
+      required: true
+  - type: textarea
+    id: spec
+    attributes:
+      label: Spec reference
+      description: Link to the SEP clause this would enforce and quote the exact wording.
+      placeholder: |
+        https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0001.md
+        > MUST ...
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behaviour
+      description: What should the check assert, and at what severity (error / warning / info)?
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: What must be true for this to count as done? (Fixture coverage, specRef, README update, etc.)
