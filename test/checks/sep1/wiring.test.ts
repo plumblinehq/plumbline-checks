@@ -43,14 +43,14 @@ describe("sep1 check wiring", () => {
     });
 
     const results = await run(env, { seps: [1] });
-    // The runner emits prerequisites before dependents, ties broken by id.
-    expect(results.map((r) => [r.checkId, r.status])).toEqual([
-      ["sep1.toml-reachable", "pass"],
-      ["sep1.toml-content-type", "pass"],
-      ["sep1.toml-cors", "pass"],
-      ["sep1.toml-parses", "pass"],
-      ["sep1.toml-size", "pass"],
-    ]);
+    // Prerequisites before dependents; order among equals is unspecified.
+    expect(results[0]?.checkId).toBe("sep1.toml-reachable");
+    expect(results[0]?.status).toBe("pass");
+    const statuses = new Map(results.map((r) => [r.checkId, r.status]));
+    expect(statuses.get("sep1.toml-content-type")).toBe("pass");
+    expect(statuses.get("sep1.toml-cors")).toBe("pass");
+    expect(statuses.get("sep1.toml-parses")).toBe("pass");
+    expect(statuses.get("sep1.toml-size")).toBe("pass");
     expect(fetches).toBe(1);
     expect(env.toml?.VERSION).toBe("2.0.0");
   });
@@ -90,6 +90,7 @@ describe("sep1 check wiring", () => {
 
     const results = await run(env, { seps: [1] });
     const byId = new Map(results.map((r) => [r.checkId, r]));
+    expect(results[0]?.checkId).toBe("sep1.toml-reachable");
     expect(byId.get("sep1.toml-content-type")?.status).toBe("pass");
     expect(byId.get("sep1.toml-cors")?.status).toBe("fail");
     expect(byId.get("sep1.toml-parses")?.status).toBe("pass");
