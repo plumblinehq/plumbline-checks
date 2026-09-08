@@ -54,4 +54,6 @@ export const tomlSize: Check = {
   },
 };
 
+register(tomlSize);
+
 const EVIDENCE_SNIPPET_BYTES = 512;
