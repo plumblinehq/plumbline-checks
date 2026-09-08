@@ -15,7 +15,7 @@ export const tomlContentType: Check = {
   description:
     "Recommends a text/plain content type on the stellar.toml response so browsers render the file instead of prompting a download.",
   severity: "warning",
-  requires: [],
+  requires: ["sep1.toml-reachable"],
   async run(env: Env): Promise<CheckOutcome> {
     const response = await fetchToml(env);
     const evidence = [recordEvidence("GET", response, { inspectedHeaders: ["content-type"] })];
