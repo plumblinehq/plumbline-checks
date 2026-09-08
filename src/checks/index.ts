@@ -2,3 +2,4 @@
 import "./sep1/tomlReachable.js";
 import "./sep1/tomlCors.js";
 import "./sep1/tomlContentType.js";
+import "./sep1/tomlSize.js";
