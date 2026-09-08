@@ -7,3 +7,5 @@ import "./sep1/tomlParses.js";
 import "./sep1/networkPassphraseValid.js";
 import "./sep1/endpointsHttps.js";
 import "./sep1/signingKeyValid.js";
+import "./sep1/accountsValid.js";
+import "./sep1/webAuthContractIdValid.js";
