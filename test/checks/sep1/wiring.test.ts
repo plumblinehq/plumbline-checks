@@ -78,6 +78,52 @@ describe("sep1 check wiring", () => {
     }
   });
 
+  it("fails every field-level check on the strkey-failures fixture", async () => {
+    const env = makeEnv(() => ({ status: 200, body: fixture("strkey-failures.toml") }));
+    env.http = new RateLimitedHttpClient({
+      fetchImpl: async () =>
+        new Response(fixture("strkey-failures.toml"), {
+          status: 200,
+          headers: { "content-type": "text/plain", "access-control-allow-origin": "*" },
+        }),
+      minIntervalMs: 0,
+      jitterMs: 0,
+      cache: new InMemoryArtifactCache(),
+    });
+
+    const results = await run(env, { seps: [1] });
+    const statuses = new Map(results.map((r) => [r.checkId, r.status]));
+    expect(statuses.get("sep1.toml-reachable")).toBe("pass");
+    expect(statuses.get("sep1.toml-parses")).toBe("pass");
+    expect(statuses.get("sep1.network-passphrase-valid")).toBe("fail");
+    expect(statuses.get("sep1.signing-key-valid")).toBe("fail");
+    expect(statuses.get("sep1.endpoints-https")).toBe("fail");
+    expect(statuses.get("sep1.accounts-valid")).toBe("fail");
+    expect(statuses.get("sep1.web-auth-contract-id-valid")).toBe("fail");
+  });
+
+  it("skips optional strkey fields that the valid fixture does not declare", async () => {
+    const env = makeEnv(() => ({ status: 200, body: fixture("valid.toml") }));
+    env.http = new RateLimitedHttpClient({
+      fetchImpl: async () =>
+        new Response(fixture("valid.toml"), {
+          status: 200,
+          headers: { "content-type": "text/plain", "access-control-allow-origin": "*" },
+        }),
+      minIntervalMs: 0,
+      jitterMs: 0,
+      cache: new InMemoryArtifactCache(),
+    });
+
+    const results = await run(env, { seps: [1] });
+    const statuses = new Map(results.map((r) => [r.checkId, r.status]));
+    expect(statuses.get("sep1.network-passphrase-valid")).toBe("pass");
+    expect(statuses.get("sep1.signing-key-valid")).toBe("pass");
+    expect(statuses.get("sep1.endpoints-https")).toBe("pass");
+    expect(statuses.get("sep1.accounts-valid")).toBe("skip");
+    expect(statuses.get("sep1.web-auth-contract-id-valid")).toBe("skip");
+  });
+
   it("fails the CORS check while the parse still shares the result", async () => {
     // Note: undici synthesizes content-type from a string body, so an explicit
     // text/plain is set here and only the CORS header is left out.

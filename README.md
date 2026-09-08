@@ -55,9 +55,11 @@ Anything requiring authentication is out of scope by design and reports as
 
 ### Shipped checks
 
-**SEP-1** (Stellar Info File, v2.7.0): `sep1.toml-reachable`,
-`sep1.toml-cors`, `sep1.toml-content-type`, `sep1.toml-size`,
-`sep1.toml-parses`.
+**SEP-1** (Stellar Info File, v2.7.0):
+`sep1.toml-reachable`, `sep1.toml-cors`, `sep1.toml-content-type`,
+`sep1.toml-size`, `sep1.toml-parses`, `sep1.network-passphrase-valid`,
+`sep1.endpoints-https`, `sep1.signing-key-valid`, `sep1.accounts-valid`,
+`sep1.web-auth-contract-id-valid`.
 
 The fetch-level checks share one cached request per run:
 `sep1.toml-reachable` fetches the file, `sep1.toml-cors`,
