@@ -47,10 +47,24 @@ Anything requiring authentication is out of scope by design and reports as
 - `src/core.ts` — the vocabulary: `Status`, `Severity`, `Evidence`, `Result`,
   `Env`, and the `Check` interface.
 - `src/probe/` — the machinery checks run on: a rate-limited HTTP client, a
-  per-run artifact cache, an evidence recorder (truncation + redaction), and
-  `stellar.toml` resolution via `@stellar/stellar-sdk`.
+  per-run artifact cache, an evidence recorder (truncation + redaction).
+- `src/checks/` — the conformance checks, one file per check, one commit per
+  check. Each file registers itself; `src/checks/index.ts` imports them all.
 - `src/registry.ts` and `src/runner.ts` — check registration and the
   dependency-ordered runner with per-check and per-run timeouts.
+
+### Shipped checks
+
+**SEP-1** (Stellar Info File, v2.7.0): `sep1.toml-reachable`,
+`sep1.toml-cors`, `sep1.toml-content-type`, `sep1.toml-size`,
+`sep1.toml-parses`.
+
+The fetch-level checks share one cached request per run:
+`sep1.toml-reachable` fetches the file, `sep1.toml-cors`,
+`sep1.toml-content-type` and `sep1.toml-size` inspect the same response, and
+`sep1.toml-parses` parses it and publishes the parsed file as `env.toml` for
+the rest of the run. A check that depends on the file parses skips — naming
+the failed prerequisite — when the file is unreachable or unparseable.
 
 ## Development
 
