@@ -36,7 +36,13 @@ describe("sep1.toml-content-type", () => {
   });
 
   it("fails when the header is missing", async () => {
-    const env = makeEnv(() => ({ status: 200, body: "VERSION=\"2.0.0\"\n" }));
+    // A Response with a string body always synthesizes a content-type, so the
+    // missing-header case is exercised with an explicitly empty value.
+    const env = makeEnv(() => ({
+      status: 200,
+      headers: { "content-type": "" },
+      body: "VERSION=\"2.0.0\"\n",
+    }));
     const outcome = await tomlContentType.run(env);
     expect(outcome.status).toBe("fail");
     expect(outcome.message).toContain("missing");
