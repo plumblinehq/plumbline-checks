@@ -5,3 +5,5 @@ import "./sep1/tomlContentType.js";
 import "./sep1/tomlSize.js";
 import "./sep1/tomlParses.js";
 import "./sep1/networkPassphraseValid.js";
+import "./sep1/endpointsHttps.js";
+import "./sep1/signingKeyValid.js";
