@@ -44,3 +44,4 @@ import "./sep10/challengeHasOperations.js";
 import "./sep10/challengeFirstOpManageData.js";
 import "./sep10/challengeFirstOpSource.js";
 import "./sep10/challengeFirstOpKey.js";
+import "./sep10/challengeNonceShape.js";
