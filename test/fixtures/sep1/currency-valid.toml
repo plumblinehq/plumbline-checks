@@ -2,20 +2,14 @@ VERSION="2.0.0"
 NETWORK_PASSPHRASE="Public Global Stellar Network ; September 2015"
 SIGNING_KEY="GBBHQ7H4V6RRORKYLHTCAWP6MOHNORRFJSDPXDFYDGJB2LPZUFPXUEW3"
 
-[DOCUMENTATION]
-ORG_NAME="Organization Name"
-ORG_URL="https://www.example.com"
-ORG_PHONE_NUMBER="+14155552671"
-ORG_OFFICIAL_EMAIL="support@example.com"
-
 [[CURRENCIES]]
 code="USD"
 issuer="GBBHQ7H4V6RRORKYLHTCAWP6MOHNORRFJSDPXDFYDGJB2LPZUFPXUEW3"
 display_decimals=2
 status="live"
 name="US Dollar"
+anchor_asset_type="fiat"
+is_unlimited=true
 
-[[VALIDATORS]]
-ALIAS="example-au"
-HOST="core-au.example.com:11625"
-PUBLIC_KEY="GBBHQ7H4V6RRORKYLHTCAWP6MOHNORRFJSDPXDFYDGJB2LPZUFPXUEW3"
+[[CURRENCIES]]
+toml="https://example.com/.well-known/CURRENCY.toml"
