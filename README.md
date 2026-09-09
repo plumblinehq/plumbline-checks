@@ -84,10 +84,39 @@ response, and `sep1.toml-parses` parses it and publishes the parsed file as
 `env.toml` for every later check. A check that depends on the parse skips —
 naming the failed prerequisite — when the file is unreachable or unparseable.
 
+**SEP-10** (Web Authentication, v3.4.1) — the full catalogue of 22 checks:
+
+- **Declaration**: `sep10.endpoint-declared` (info) — requires
+  `WEB_AUTH_ENDPOINT` and `SIGNING_KEY`; every other SEP-10 check skips when
+  they are absent.
+- **Fetch level** (one cached challenge request per run):
+  `sep10.challenge-returns-200`, `sep10.cors-headers`,
+  `sep10.options-preflight`.
+- **Response shape**: `sep10.challenge-json-shape`, `sep10.challenge-decodes`.
+- **Transaction fields**: `sep10.challenge-source-is-server-account`,
+  `sep10.challenge-sequence-zero`, `sep10.challenge-has-timebounds`,
+  `sep10.challenge-timebound-window`, `sep10.challenge-server-signature`.
+- **Operations**: `sep10.challenge-has-operations`,
+  `sep10.challenge-first-op-manage-data`, `sep10.challenge-first-op-source`,
+  `sep10.challenge-first-op-key`, `sep10.challenge-nonce-shape`,
+  `sep10.challenge-web-auth-domain-op`, `sep10.challenge-other-ops-source`.
+- **Network**: `sep10.network-passphrase-returned`,
+  `sep10.network-passphrase-consistent`.
+- **Error handling**: `sep10.error-response-shape`,
+  `sep10.rejects-missing-account`.
+
+The fetch-level checks issue one `GET <WEB_AUTH_ENDPOINT>?account=<ephemeral>`
+per run and publish the response into a shared context; decode-level checks
+read it through the runner's `requires` ordering. Signature verification
+prefers the toml's `NETWORK_PASSPHRASE` and falls back to the network
+convention, and a response passphrase that disagrees with the toml is a
+distinct failure. Challenges are fetched and verified only — never signed,
+never submitted.
+
 ### CLI
 
 ```
-plumbline run --home-domain testanchor.stellar.org --seps 1 --json
+plumbline run --home-domain testanchor.stellar.org --seps 1,10 --json
 plumbline checks list [--sep 1]
 ```
 
