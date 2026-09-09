@@ -19,3 +19,4 @@ import "./sep1/orgLogoReachable.js";
 import "./sep1/currenciesPresent.js";
 import "./sep1/currencyCodeLength.js";
 import "./sep1/currencyIssuerOrContract.js";
+import "./sep1/currencyStatusValid.js";
