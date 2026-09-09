@@ -24,6 +24,16 @@ export function signingKey(env: Env): string | undefined {
 }
 
 /**
+ * A fixed foreign Origin header sent with challenge and preflight requests,
+ * simulating a browser wallet from another site — the exact scenario
+ * SEP-10 §Cross-Origin Headers exists for. Servers that serve CORS
+ * conditionally (vary: Origin) then emit their headers as they would for a
+ * real client, while servers that echo the requesting origin still fail
+ * the exactly-"*" assertion.
+ */
+export const CLIENT_ORIGIN = "https://plumbline.example";
+
+/**
  * The network passphrase SEP-10 verification uses. Per the master build
  * prompt, prefer the toml's NETWORK_PASSPHRASE; when the toml does not
  * declare one, fall back to the SEP-10 convention — "use the Stellar

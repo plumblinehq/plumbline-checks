@@ -1,7 +1,7 @@
 import type { Check, CheckOutcome, Env } from "../../core.js";
 import { recordEvidence } from "../../probe/evidence.js";
 import { register } from "../../registry.js";
-import { webAuthEndpoint } from "./common.js";
+import { CLIENT_ORIGIN, webAuthEndpoint } from "./common.js";
 
 /**
  * SEP-10 §Cross-Origin Headers: "In order for browsers-based wallets to
@@ -32,7 +32,7 @@ export const optionsPreflight: Check = {
     }
     const response = await env.http.options(endpoint, {
       headers: {
-        origin: "https://plumbline.example",
+        origin: CLIENT_ORIGIN,
         "access-control-request-method": "GET",
       },
     });
