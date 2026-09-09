@@ -49,3 +49,4 @@ import "./sep10/challengeWebAuthDomainOp.js";
 import "./sep10/challengeOtherOpsSource.js";
 import "./sep10/networkPassphraseReturned.js";
 import "./sep10/networkPassphraseConsistent.js";
+import "./sep10/errorResponseShape.js";
