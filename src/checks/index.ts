@@ -28,3 +28,4 @@ import "./sep1/currencyRegulatedHasApprovalServer.js";
 import "./sep1/currencyTomlLinkResolves.js";
 import "./sep1/currencyImageReachable.js";
 import "./sep1/validatorAliasFormat.js";
+import "./sep1/validatorFieldsPresent.js";
