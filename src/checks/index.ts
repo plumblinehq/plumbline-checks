@@ -26,3 +26,4 @@ import "./sep1/currencyIssuancePolicyExclusive.js";
 import "./sep1/currencyAnchorAssetTypeValid.js";
 import "./sep1/currencyRegulatedHasApprovalServer.js";
 import "./sep1/currencyTomlLinkResolves.js";
+import "./sep1/currencyImageReachable.js";
