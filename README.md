@@ -55,18 +55,43 @@ Anything requiring authentication is out of scope by design and reports as
 
 ### Shipped checks
 
-**SEP-1** (Stellar Info File, v2.7.0):
-`sep1.toml-reachable`, `sep1.toml-cors`, `sep1.toml-content-type`,
-`sep1.toml-size`, `sep1.toml-parses`, `sep1.network-passphrase-valid`,
-`sep1.endpoints-https`, `sep1.signing-key-valid`, `sep1.accounts-valid`,
-`sep1.web-auth-contract-id-valid`.
+**SEP-1** (Stellar Info File, v2.7.0) — the full catalogue of 30 checks:
 
-The fetch-level checks share one cached request per run:
-`sep1.toml-reachable` fetches the file, `sep1.toml-cors`,
-`sep1.toml-content-type` and `sep1.toml-size` inspect the same response, and
-`sep1.toml-parses` parses it and publishes the parsed file as `env.toml` for
-the rest of the run. A check that depends on the file parses skips — naming
-the failed prerequisite — when the file is unreachable or unparseable.
+- **File fetch level** (one cached request per run): `sep1.toml-reachable`,
+  `sep1.toml-cors`, `sep1.toml-content-type`, `sep1.toml-size`,
+  `sep1.toml-parses`.
+- **General information**: `sep1.version-present`,
+  `sep1.network-passphrase-valid`, `sep1.endpoints-https`,
+  `sep1.signing-key-valid`, `sep1.accounts-valid`,
+  `sep1.web-auth-contract-id-valid`.
+- **Organization documentation**: `sep1.documentation-present`,
+  `sep1.org-url-https`, `sep1.org-url-same-domain`,
+  `sep1.org-official-email-domain`, `sep1.org-phone-e164`,
+  `sep1.org-logo-reachable`.
+- **Currencies**: `sep1.currencies-present`, `sep1.currency-code-length`,
+  `sep1.currency-issuer-or-contract`, `sep1.currency-status-valid`,
+  `sep1.currency-display-decimals-range`, `sep1.currency-name-length`,
+  `sep1.currency-issuance-policy-exclusive`,
+  `sep1.currency-anchor-asset-type-valid`,
+  `sep1.currency-regulated-has-approval-server`,
+  `sep1.currency-toml-link-resolves`, `sep1.currency-image-reachable`.
+- **Validators**: `sep1.validator-alias-format`,
+  `sep1.validator-fields-present`.
+
+`sep1.toml-reachable` fetches the file once per run; `sep1.toml-cors`,
+`sep1.toml-content-type` and `sep1.toml-size` inspect that same cached
+response, and `sep1.toml-parses` parses it and publishes the parsed file as
+`env.toml` for every later check. A check that depends on the parse skips —
+naming the failed prerequisite — when the file is unreachable or unparseable.
+
+### CLI
+
+```
+plumbline run --home-domain testanchor.stellar.org --seps 1 --json
+plumbline checks list [--sep 1]
+```
+
+The exit code is 0 unless an `error`-severity check failed.
 
 ## Development
 
