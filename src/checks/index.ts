@@ -12,3 +12,4 @@ import "./sep1/webAuthContractIdValid.js";
 import "./sep1/versionPresent.js";
 import "./sep1/documentationPresent.js";
 import "./sep1/orgUrlHttps.js";
+import "./sep1/orgUrlSameDomain.js";
