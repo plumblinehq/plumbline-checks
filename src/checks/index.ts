@@ -14,3 +14,4 @@ import "./sep1/documentationPresent.js";
 import "./sep1/orgUrlHttps.js";
 import "./sep1/orgUrlSameDomain.js";
 import "./sep1/orgOfficialEmailDomain.js";
+import "./sep1/orgPhoneE164.js";
