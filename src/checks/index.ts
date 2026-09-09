@@ -39,3 +39,4 @@ import "./sep10/challengeSourceIsServerAccount.js";
 import "./sep10/challengeSequenceZero.js";
 import "./sep10/challengeHasTimebounds.js";
 import "./sep10/challengeTimeboundWindow.js";
+import "./sep10/challengeServerSignature.js";
