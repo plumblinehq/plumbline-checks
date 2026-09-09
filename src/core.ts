@@ -1,4 +1,4 @@
-import type { StellarToml } from "@stellar/stellar-sdk";
+import type { StellarToml, Transaction } from "@stellar/stellar-sdk";
 
 /**
  * The outcome of a single check against an anchor.
@@ -111,12 +111,45 @@ export interface Env {
   /** Populated once `sep1.toml-parses` has passed; absent otherwise. */
   toml?: StellarToml.Api.StellarToml;
   /**
+   * Shared SEP-10 state, populated progressively by the fetch-level SEP-10
+   * checks: the ephemeral account, the challenge response, its parsed JSON,
+   * and the decoded transaction. Absent until `sep10.challenge-returns-200`
+   * runs.
+   */
+  sep10?: Sep10Context;
+  /**
+   * The GET <endpoint> without an account, fetched by
+   * `sep10.error-response-shape` and read by `sep10.rejects-missing-account`.
+   * Kept separate from `sep10` so the two error checks do not depend on the
+   * challenge fetch having run.
+   */
+  sep10MissingAccountResponse?: HttpResponse;
+  /**
    * The clock. Checks must take time from here, never `Date.now()` directly,
    * so tests can freeze it. This keeps a check deterministic: given the same
    * HTTP responses it must return the same result.
    */
   now: () => Date;
   logger: Logger;
+}
+
+/**
+ * The shared SEP-10 state one check populates and the next reads. Mirrors
+ * how `sep1.toml-parses` publishes `env.toml`: the fetch-level checks fill
+ * it in as side effects of passing, and every dependent check reads it
+ * through the runner's `requires` ordering.
+ */
+export interface Sep10Context {
+  /** The ephemeral account supplied as the `account` query parameter. */
+  account: string;
+  /** The web auth endpoint the challenge was requested from. */
+  endpointUrl: string;
+  /** The GET <endpoint>?account=<account> response. */
+  response: HttpResponse;
+  /** The parsed response body, once `sep10.challenge-json-shape` passes. */
+  json?: Record<string, unknown>;
+  /** The decoded challenge transaction, once `sep10.challenge-decodes` passes. */
+  transaction?: Transaction;
 }
 
 /**
