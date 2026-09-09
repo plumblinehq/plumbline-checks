@@ -24,3 +24,4 @@ import "./sep1/currencyDisplayDecimalsRange.js";
 import "./sep1/currencyNameLength.js";
 import "./sep1/currencyIssuancePolicyExclusive.js";
 import "./sep1/currencyAnchorAssetTypeValid.js";
+import "./sep1/currencyRegulatedHasApprovalServer.js";
