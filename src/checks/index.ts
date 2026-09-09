@@ -17,3 +17,4 @@ import "./sep1/orgOfficialEmailDomain.js";
 import "./sep1/orgPhoneE164.js";
 import "./sep1/orgLogoReachable.js";
 import "./sep1/currenciesPresent.js";
+import "./sep1/currencyCodeLength.js";
