@@ -42,3 +42,4 @@ import "./sep10/challengeTimeboundWindow.js";
 import "./sep10/challengeServerSignature.js";
 import "./sep10/challengeHasOperations.js";
 import "./sep10/challengeFirstOpManageData.js";
+import "./sep10/challengeFirstOpSource.js";
