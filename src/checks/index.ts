@@ -21,3 +21,4 @@ import "./sep1/currencyCodeLength.js";
 import "./sep1/currencyIssuerOrContract.js";
 import "./sep1/currencyStatusValid.js";
 import "./sep1/currencyDisplayDecimalsRange.js";
+import "./sep1/currencyNameLength.js";
