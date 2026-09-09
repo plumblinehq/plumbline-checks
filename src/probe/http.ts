@@ -49,13 +49,24 @@ class HostGate {
 
   schedule<T>(task: () => Promise<T>): Promise<T> {
     const run = this.tail.then(async () => {
-      // performance.now() is monotonic and sub-millisecond; Date.now() at 1ms
-      // granularity could make wait = minIntervalMs - 1, shaving the gap below
-      // the politeness guarantee the scheduler exists to enforce.
-      const elapsed = performance.now() - this.lastRequestAt;
-      const wait = Math.max(0, this.minIntervalMs - elapsed) + Math.random() * this.jitterMs;
-      if (wait > 0) {
-        await sleep(wait);
+      // performance.now() is monotonic and sub-millisecond, so the interval
+      // is measured against it — Date.now() at 1ms granularity could shave
+      // the gap below the politeness guarantee this scheduler exists to
+      // enforce. A single sleep can still fire "early" relative to the
+      // monotonic clock (on Windows setTimeout and performance.now() are
+      // backed by different clocks), so the remainder is re-checked after
+      // each wake and the sleep repeated until the interval has really
+      // passed.
+      for (;;) {
+        const remaining = this.minIntervalMs - (performance.now() - this.lastRequestAt);
+        if (remaining <= 0) {
+          break;
+        }
+        await sleep(remaining);
+      }
+      // Jitter is added on top, never as a substitute for the interval.
+      if (this.jitterMs > 0) {
+        await sleep(Math.random() * this.jitterMs);
       }
       this.lastRequestAt = performance.now();
       return task();

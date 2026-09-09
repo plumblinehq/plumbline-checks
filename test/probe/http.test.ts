@@ -115,9 +115,10 @@ describe("RateLimitedHttpClient", () => {
     await client.get("https://example.com/two");
 
     expect(starts).toHaveLength(2);
-    // The gate sleeps minIntervalMs minus the elapsed time measured with a
-    // monotonic clock, so the observed gap is the interval minus sub-
-    // millisecond timer and microtask slop; allow a small epsilon.
+    // The gate re-checks the elapsed time after each wake and sleeps the
+    // remainder, so the interval holds against the monotonic clock; the
+    // observed gap is the interval plus microtask slop. The epsilon guards
+    // against nothing but timer resolution at the loop exit.
     expect(starts[1]! - starts[0]!).toBeGreaterThanOrEqual(40 - 1);
   });
 
