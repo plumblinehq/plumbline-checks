@@ -40,3 +40,4 @@ import "./sep10/challengeSequenceZero.js";
 import "./sep10/challengeHasTimebounds.js";
 import "./sep10/challengeTimeboundWindow.js";
 import "./sep10/challengeServerSignature.js";
+import "./sep10/challengeHasOperations.js";
