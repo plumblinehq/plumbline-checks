@@ -31,3 +31,4 @@ import "./sep1/validatorAliasFormat.js";
 import "./sep1/validatorFieldsPresent.js";
 import "./sep10/endpointDeclared.js";
 import "./sep10/challengeReturns200.js";
+import "./sep10/corsHeaders.js";
