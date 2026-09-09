@@ -49,12 +49,15 @@ class HostGate {
 
   schedule<T>(task: () => Promise<T>): Promise<T> {
     const run = this.tail.then(async () => {
-      const elapsed = Date.now() - this.lastRequestAt;
+      // performance.now() is monotonic and sub-millisecond; Date.now() at 1ms
+      // granularity could make wait = minIntervalMs - 1, shaving the gap below
+      // the politeness guarantee the scheduler exists to enforce.
+      const elapsed = performance.now() - this.lastRequestAt;
       const wait = Math.max(0, this.minIntervalMs - elapsed) + Math.random() * this.jitterMs;
       if (wait > 0) {
         await sleep(wait);
       }
-      this.lastRequestAt = Date.now();
+      this.lastRequestAt = performance.now();
       return task();
     });
     // Keep the chain alive regardless of a failed task.

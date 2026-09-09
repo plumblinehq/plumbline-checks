@@ -106,7 +106,7 @@ describe("RateLimitedHttpClient", () => {
   it("spaces requests to the same host by the minimum interval", async () => {
     const starts: number[] = [];
     const fetchImpl = async (_url: string | URL | Request, _init?: RequestInit): Promise<Response> => {
-      starts.push(Date.now());
+      starts.push(performance.now());
       return new Response("ok", { status: 200 });
     };
     const client = new RateLimitedHttpClient({ fetchImpl, minIntervalMs: 40, jitterMs: 0 });
@@ -115,7 +115,10 @@ describe("RateLimitedHttpClient", () => {
     await client.get("https://example.com/two");
 
     expect(starts).toHaveLength(2);
-    expect(starts[1]! - starts[0]!).toBeGreaterThanOrEqual(40);
+    // The gate sleeps minIntervalMs minus the elapsed time measured with a
+    // monotonic clock, so the observed gap is the interval minus sub-
+    // millisecond timer and microtask slop; allow a small epsilon.
+    expect(starts[1]! - starts[0]!).toBeGreaterThanOrEqual(40 - 1);
   });
 
   it("serves repeated requests from the per-run cache", async () => {
