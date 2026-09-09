@@ -33,3 +33,4 @@ import "./sep10/endpointDeclared.js";
 import "./sep10/challengeReturns200.js";
 import "./sep10/corsHeaders.js";
 import "./sep10/optionsPreflight.js";
+import "./sep10/challengeJsonShape.js";
