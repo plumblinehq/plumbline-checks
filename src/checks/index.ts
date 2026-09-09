@@ -25,3 +25,4 @@ import "./sep1/currencyNameLength.js";
 import "./sep1/currencyIssuancePolicyExclusive.js";
 import "./sep1/currencyAnchorAssetTypeValid.js";
 import "./sep1/currencyRegulatedHasApprovalServer.js";
+import "./sep1/currencyTomlLinkResolves.js";
