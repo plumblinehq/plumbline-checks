@@ -1,6 +1,6 @@
 {
   "name": "@plumblinehq/plumbline-checks",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "SEP conformance checks for Stellar anchors. Read-only library and CLI; never signs or submits anything.",
   "license": "Apache-2.0",
   "type": "module",
