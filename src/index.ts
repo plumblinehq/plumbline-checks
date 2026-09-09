@@ -1,4 +1,5 @@
 export * from "./core.js";
+export * from "./version.js";
 export * from "./registry.js";
 export * from "./runner.js";
 export * from "./probe/cache.js";
