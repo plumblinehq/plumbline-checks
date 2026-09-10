@@ -18,6 +18,7 @@ export const rejectsMissingAccount: Check = {
   description:
     "Requires the auth endpoint to answer a request without the account parameter with a 4xx, not a 5xx.",
   severity: "warning",
+  specRef: "SEP-10 §Request Parameters",
   requires: ["sep10.error-response-shape"],
   async run(env: Env): Promise<CheckOutcome> {
     const response = env.sep10MissingAccountResponse;

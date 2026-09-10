@@ -16,6 +16,7 @@ export const currencyCodeLength: Check = {
   description:
     "Requires every inline [[CURRENCIES]] entry to declare a code of at most 12 characters, per SEP-1 §Currency Documentation.",
   severity: "error",
+  specRef: "SEP-1 §Currency Documentation, code",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const currencies = currencyEntries(env);

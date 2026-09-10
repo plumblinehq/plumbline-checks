@@ -23,6 +23,7 @@ export const tomlParses: Check = {
   description:
     "Parses the stellar.toml body as TOML; on success the parsed file is made available to the rest of the run.",
   severity: "error",
+  specRef: "SEP-1 §Specification, TOML format",
   requires: ["sep1.toml-reachable"],
   async run(env: Env): Promise<CheckOutcome> {
     const response = await fetchToml(env);

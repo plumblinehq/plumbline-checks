@@ -21,6 +21,7 @@ export const currencyTomlLinkResolves: Check = {
   description:
     "For every [[CURRENCIES]] entry that links out via toml=, fetches the linked file and requires it to parse as TOML.",
   severity: "error",
+  specRef: "SEP-1 §Currency Documentation, toml link",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const currencies = currencyEntries(env);

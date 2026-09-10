@@ -16,6 +16,7 @@ export const documentationPresent: Check = {
   description:
     "Requires the [DOCUMENTATION] table, which carries the organization's identity and contact fields.",
   severity: "warning",
+  specRef: "SEP-1 §Specification, Organization Documentation",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const documentation = tomlValue(env, "DOCUMENTATION");

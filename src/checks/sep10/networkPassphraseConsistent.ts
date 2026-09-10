@@ -19,6 +19,7 @@ export const networkPassphraseConsistent: Check = {
   description:
     "If the challenge response declares network_passphrase, requires it to match the toml's NETWORK_PASSPHRASE (or the run's network default).",
   severity: "error",
+  specRef: "SEP-10 §Response (Success)",
   requires: ["sep10.challenge-json-shape"],
   async run(env: Env): Promise<CheckOutcome> {
     const returned = sep10Context(env).json?.network_passphrase;

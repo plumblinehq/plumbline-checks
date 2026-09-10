@@ -121,7 +121,7 @@ async function main(): Promise<void> {
   if (args.command === "checks") {
     const checks = args.sepFilter === undefined ? all() : all().filter((c) => c.sep === args.sepFilter);
     for (const check of checks) {
-      console.log(`${check.id}\tsep-${check.sep}\t${check.severity}\t${check.title}`);
+      console.log(`${check.id}\tsep-${check.sep}\t${check.severity}\t${check.specRef}\t${check.title}`);
     }
     return;
   }

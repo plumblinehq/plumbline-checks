@@ -36,6 +36,7 @@ export const endpointsHttps: Check = {
   description:
     "Requires every declared server endpoint field to be an https:// URL, per the Requirements column of SEP-1 §General Information.",
   severity: "error",
+  specRef: "SEP-1 §General Information (Requirements: uses https://)",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const offenders: string[] = [];

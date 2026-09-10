@@ -18,6 +18,7 @@ export const tomlReachable: Check = {
   description:
     "Fetches https://<home domain>/.well-known/stellar.toml and requires a 2xx response at the SEP-1 defined location.",
   severity: "error",
+  specRef: "SEP-1 §Specification",
   requires: [],
   async run(env: Env): Promise<CheckOutcome> {
     const response = await fetchToml(env);

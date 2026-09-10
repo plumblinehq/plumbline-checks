@@ -17,6 +17,7 @@ export const orgLogoReachable: Check = {
   description:
     "If ORG_LOGO is declared, fetches it and requires a 2xx response with an image/png content type.",
   severity: "warning",
+  specRef: "SEP-1 §Organization Documentation, ORG_LOGO",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const documentation = tomlValue(env, "DOCUMENTATION");

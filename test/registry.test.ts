@@ -9,6 +9,7 @@ function check(id: string, sep: number): Check {
     title: id,
     description: `Test check ${id}`,
     severity: "error",
+    specRef: "spec",
     requires: [],
     async run() {
       return { status: "pass", message: "ok", specRef: "spec", evidence: [] };

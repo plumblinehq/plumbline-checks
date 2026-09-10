@@ -17,6 +17,7 @@ export const webAuthContractIdValid: Check = {
   description:
     "If WEB_AUTH_CONTRACT_ID is declared, requires it to be a valid C... contract strkey, checksum included.",
   severity: "error",
+  specRef: "SEP-1 §General Information, WEB_AUTH_CONTRACT_ID",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const contractId = tomlValue(env, "WEB_AUTH_CONTRACT_ID");

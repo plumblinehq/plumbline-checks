@@ -18,6 +18,7 @@ export const challengeNonceShape: Check = {
   description:
     "Requires the first Manage Data operation's value to be 64 bytes that base64-decode to 48 bytes, per SEP-10 §Response (Success).",
   severity: "error",
+  specRef: "SEP-10 §Response (Success)",
   requires: ["sep10.challenge-first-op-manage-data"],
   async run(env: Env): Promise<CheckOutcome> {
     const first = sep10Context(env).transaction?.operations[0];

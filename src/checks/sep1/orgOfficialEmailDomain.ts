@@ -18,6 +18,7 @@ export const orgOfficialEmailDomain: Check = {
   description:
     "If ORG_OFFICIAL_EMAIL and ORG_URL are both declared, requires the email's domain to match ORG_URL's domain, per SEP-1 §Organization Documentation.",
   severity: "error",
+  specRef: "SEP-1 §Organization Documentation, ORG_OFFICIAL_EMAIL",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const documentation = tomlValue(env, "DOCUMENTATION");

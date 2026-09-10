@@ -14,6 +14,7 @@ export const challengeSourceIsServerAccount: Check = {
   description:
     "Requires the decoded challenge transaction's source account to equal the toml's SIGNING_KEY, per SEP-10 §Response (Success).",
   severity: "error",
+  specRef: "SEP-10 §Response (Success)",
   requires: ["sep10.challenge-decodes"],
   async run(env: Env): Promise<CheckOutcome> {
     const serverAccount = signingKey(env);

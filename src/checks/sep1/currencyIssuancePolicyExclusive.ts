@@ -19,6 +19,7 @@ export const currencyIssuancePolicyExclusive: Check = {
   description:
     "Requires each [[CURRENCIES]] entry to declare at most one of fixed_number, max_number, is_unlimited, per SEP-1 §Currency Documentation.",
   severity: "error",
+  specRef: "SEP-1 §Currency Documentation, fixed_number / max_number / is_unlimited",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const currencies = currencyEntries(env);

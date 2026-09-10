@@ -19,6 +19,7 @@ export const endpointDeclared: Check = {
   description:
     "Requires the toml to declare both the SEP-10 web auth endpoint and the server account that signs challenges.",
   severity: "info",
+  specRef: "SEP-10 §Authentication Endpoint",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const missing: string[] = [];

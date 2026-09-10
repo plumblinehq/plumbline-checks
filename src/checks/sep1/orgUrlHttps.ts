@@ -17,6 +17,7 @@ export const orgUrlHttps: Check = {
   description:
     "If ORG_URL is declared, requires it to be an https:// URL, per the Requirements column of SEP-1 §Organization Documentation.",
   severity: "error",
+  specRef: "SEP-1 §Organization Documentation, ORG_URL",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const documentation = tomlValue(env, "DOCUMENTATION");

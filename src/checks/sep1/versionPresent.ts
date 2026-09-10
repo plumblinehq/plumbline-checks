@@ -17,6 +17,7 @@ export const versionPresent: Check = {
   description:
     "Requires the global VERSION field, which tells parsers which SEP-1 version the file adheres to.",
   severity: "warning",
+  specRef: "SEP-1 §General Information, VERSION",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const version = tomlValue(env, "VERSION");

@@ -35,6 +35,7 @@ describe("Check shape", () => {
       title: "Example",
       description: "Proves the Check type accepts a minimal implementation.",
       severity: "info",
+      specRef: "SEP-1 §Example",
       requires: [],
       async run() {
         return { status: "pass", message: "ok", specRef: "SEP-1 §Example", evidence: [] };

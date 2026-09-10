@@ -44,6 +44,7 @@ function check(
     title: overrides.title ?? id,
     description: `Test check ${id}`,
     severity: overrides.severity ?? "error",
+    specRef: "spec",
     requires: overrides.requires ?? [],
     run: overrides.run ?? (async () => ({ status: "pass", message: "ok", specRef: "spec", evidence: [] })),
   };

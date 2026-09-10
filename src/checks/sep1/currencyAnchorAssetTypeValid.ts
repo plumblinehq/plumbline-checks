@@ -27,6 +27,7 @@ export const currencyAnchorAssetTypeValid: Check = {
   description:
     "If a [[CURRENCIES]] entry declares anchor_asset_type, requires it to be one of the eight values SEP-1 enumerates.",
   severity: "error",
+  specRef: "SEP-1 §Currency Documentation, anchor_asset_type",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const currencies = currencyEntries(env);

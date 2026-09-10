@@ -16,6 +16,7 @@ export const challengeFirstOpKey: Check = {
   description:
     "Requires the first Manage Data operation's key to be the home domain followed by \" auth\", at most 64 characters.",
   severity: "error",
+  specRef: "SEP-10 §Response (Success)",
   requires: ["sep10.challenge-first-op-manage-data"],
   async run(env: Env): Promise<CheckOutcome> {
     const first = sep10Context(env).transaction?.operations[0];

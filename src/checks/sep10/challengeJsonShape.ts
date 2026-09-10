@@ -17,6 +17,7 @@ export const challengeJsonShape: Check = {
   description:
     "Requires the 200 response body to be a JSON object with a string `transaction` field, per SEP-10 §Response (Success).",
   severity: "error",
+  specRef: "SEP-10 §Response (Success)",
   requires: ["sep10.challenge-returns-200"],
   async run(env: Env): Promise<CheckOutcome> {
     const context = sep10Context(env);

@@ -20,6 +20,7 @@ export const challengeDecodes: Check = {
   description:
     "Decodes the response's transaction field as a base64 Stellar transaction envelope via the SDK.",
   severity: "error",
+  specRef: "SEP-10 §Response (Success)",
   requires: ["sep10.challenge-json-shape"],
   async run(env: Env): Promise<CheckOutcome> {
     const context = sep10Context(env);

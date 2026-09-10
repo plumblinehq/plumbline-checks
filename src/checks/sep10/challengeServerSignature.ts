@@ -17,6 +17,7 @@ export const challengeServerSignature: Check = {
   description:
     "Verifies that the decoded challenge envelope carries a valid signature by the toml's SIGNING_KEY over the transaction hash for the declared network.",
   severity: "error",
+  specRef: "SEP-10 §Authentication flow",
   requires: ["sep10.challenge-decodes"],
   async run(env: Env): Promise<CheckOutcome> {
     const serverAccount = signingKey(env);

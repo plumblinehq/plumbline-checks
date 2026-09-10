@@ -21,6 +21,7 @@ export const currencyRegulatedHasApprovalServer: Check = {
   description:
     "If a [[CURRENCIES]] entry declares regulated = true, requires it to also declare approval_server, per SEP-8 §SEP-1 stellar.toml.",
   severity: "error",
+  specRef: "SEP-8 §SEP-1 stellar.toml, regulated / approval_server",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const currencies = currencyEntries(env);

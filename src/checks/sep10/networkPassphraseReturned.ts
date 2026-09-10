@@ -15,6 +15,7 @@ export const networkPassphraseReturned: Check = {
   description:
     "Requires the challenge response to include the network_passphrase field SEP-10 recommends.",
   severity: "warning",
+  specRef: "SEP-10 §Response (Success)",
   requires: ["sep10.challenge-json-shape"],
   async run(env: Env): Promise<CheckOutcome> {
     const passphrase = sep10Context(env).json?.network_passphrase;

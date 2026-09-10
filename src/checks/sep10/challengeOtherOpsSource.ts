@@ -20,6 +20,7 @@ export const challengeOtherOpsSource: Check = {
   description:
     "Requires every operation after the first to be a Manage Data operation sourced from the SIGNING_KEY, except client_domain operations.",
   severity: "error",
+  specRef: "SEP-10 §Authentication flow",
   requires: ["sep10.challenge-has-operations"],
   async run(env: Env): Promise<CheckOutcome> {
     const transaction = sep10Context(env).transaction;

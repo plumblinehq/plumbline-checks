@@ -18,6 +18,7 @@ export const orgUrlSameDomain: Check = {
   description:
     "If ORG_URL is declared, requires the home domain hosting the stellar.toml to be the same domain, per SEP-1 §Organization Documentation.",
   severity: "error",
+  specRef: "SEP-1 §Organization Documentation, ORG_URL",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const documentation = tomlValue(env, "DOCUMENTATION");

@@ -19,6 +19,7 @@ export const currencyStatusValid: Check = {
   description:
     "If a [[CURRENCIES]] entry declares status, requires it to be one of the four values SEP-1 enumerates.",
   severity: "error",
+  specRef: "SEP-1 §Currency Documentation, status",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const currencies = currencyEntries(env);

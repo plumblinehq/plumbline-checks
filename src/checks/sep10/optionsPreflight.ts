@@ -19,6 +19,7 @@ export const optionsPreflight: Check = {
   description:
     "Sends an OPTIONS preflight to WEB_AUTH_ENDPOINT and requires a 2xx response with Access-Control-Allow-Origin: *.",
   severity: "error",
+  specRef: "SEP-10 §Cross-Origin Headers",
   requires: ["sep1.toml-parses", "sep10.endpoint-declared"],
   async run(env: Env): Promise<CheckOutcome> {
     const endpoint = webAuthEndpoint(env);

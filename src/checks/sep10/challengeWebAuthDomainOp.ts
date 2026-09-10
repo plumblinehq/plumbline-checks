@@ -27,6 +27,7 @@ export const challengeWebAuthDomainOp: Check = {
   description:
     "If the challenge has a Manage Data operation with key web_auth_domain, requires its source to be the SIGNING_KEY and its value to be the endpoint's domain.",
   severity: "error",
+  specRef: "SEP-10 §Authentication flow",
   requires: ["sep10.challenge-has-operations"],
   async run(env: Env): Promise<CheckOutcome> {
     const transaction = sep10Context(env).transaction;

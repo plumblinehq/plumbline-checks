@@ -18,6 +18,7 @@ export const tomlSize: Check = {
   description:
     "Measures the stellar.toml body in bytes and requires it to be at most 100KB, the SEP-1 maximum file size.",
   severity: "error",
+  specRef: "SEP-1 §Specification, max file size",
   requires: ["sep1.toml-reachable"],
   async run(env: Env): Promise<CheckOutcome> {
     const response = await fetchToml(env);

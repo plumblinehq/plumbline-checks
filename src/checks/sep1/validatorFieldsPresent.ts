@@ -17,6 +17,7 @@ export const validatorFieldsPresent: Check = {
   description:
     "For each [[VALIDATORS]] entry, reports whether PUBLIC_KEY and HOST are declared.",
   severity: "info",
+  specRef: "SEP-1 §Validator Information, PUBLIC_KEY / HOST",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const validators = tomlValue(env, "VALIDATORS");

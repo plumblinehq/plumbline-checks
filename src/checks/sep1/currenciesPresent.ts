@@ -17,6 +17,7 @@ export const currenciesPresent: Check = {
   description:
     "Requires the [[CURRENCIES]] list to contain at least one entry, per the completeness guidance of SEP-1 §Specification.",
   severity: "warning",
+  specRef: "SEP-1 §Specification, Currency Documentation",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const currencies = currencyEntries(env);

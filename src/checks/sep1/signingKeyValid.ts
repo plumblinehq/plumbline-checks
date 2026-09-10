@@ -18,6 +18,7 @@ export const signingKeyValid: Check = {
   description:
     "If SIGNING_KEY is declared, requires it to be a valid G... ed25519 strkey, checksum included.",
   severity: "error",
+  specRef: "SEP-1 §General Information, SIGNING_KEY",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const signingKey = tomlValue(env, "SIGNING_KEY");

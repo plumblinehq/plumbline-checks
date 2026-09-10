@@ -17,6 +17,7 @@ export const currencyImageReachable: Check = {
   description:
     "For every inline [[CURRENCIES]] entry that declares image, fetches it and requires a 2xx response.",
   severity: "warning",
+  specRef: "SEP-1 §Currency Documentation, image",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const currencies = currencyEntries(env);

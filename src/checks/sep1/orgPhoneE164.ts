@@ -22,6 +22,7 @@ export const orgPhoneE164: Check = {
   description:
     "If ORG_PHONE_NUMBER is declared, requires it to match the E.164 format the spec describes, e.g. +14155552671.",
   severity: "warning",
+  specRef: "SEP-1 §Organization Documentation, ORG_PHONE_NUMBER",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const documentation = tomlValue(env, "DOCUMENTATION");

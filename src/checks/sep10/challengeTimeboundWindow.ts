@@ -22,6 +22,7 @@ export const challengeTimeboundWindow: Check = {
   description:
     "Requires the challenge time bounds to span roughly the 900 seconds SEP-10 recommends (within a 10% band).",
   severity: "warning",
+  specRef: "SEP-10 §Response (Success)",
   requires: ["sep10.challenge-has-timebounds"],
   async run(env: Env): Promise<CheckOutcome> {
     const transaction = sep10Context(env).transaction;

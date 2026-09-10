@@ -14,6 +14,7 @@ export const challengeHasOperations: Check = {
   description:
     "Requires the decoded challenge transaction to contain at least one operation, per SEP-10's validation steps.",
   severity: "error",
+  specRef: "SEP-10 §Token",
   requires: ["sep10.challenge-decodes"],
   async run(env: Env): Promise<CheckOutcome> {
     const transaction = sep10Context(env).transaction;

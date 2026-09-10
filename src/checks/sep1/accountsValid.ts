@@ -17,6 +17,7 @@ export const accountsValid: Check = {
   description:
     "If ACCOUNTS is declared, requires every entry to be a valid G... ed25519 strkey, checksum included.",
   severity: "error",
+  specRef: "SEP-1 §General Information, ACCOUNTS",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const accounts = tomlValue(env, "ACCOUNTS");

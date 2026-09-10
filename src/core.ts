@@ -168,6 +168,8 @@ export interface Check {
   title: string;
   description: string;
   severity: Severity;
+  /** The spec clause this check enforces, e.g. "SEP-1 §Specification, CORS". */
+  specRef: string;
   /** Check ids that must have passed for this check to run. */
   requires: string[];
   run(env: Env): Promise<CheckOutcome>;

@@ -14,6 +14,7 @@ export const currencyNameLength: Check = {
   description:
     "If a [[CURRENCIES]] entry declares name, requires it to be a string of at most 20 characters, per SEP-1 §Currency Documentation.",
   severity: "error",
+  specRef: "SEP-1 §Currency Documentation, name",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const currencies = currencyEntries(env);

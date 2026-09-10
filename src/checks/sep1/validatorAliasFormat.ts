@@ -19,6 +19,7 @@ export const validatorAliasFormat: Check = {
   description:
     "If a [[VALIDATORS]] entry declares ALIAS, requires it to match the pattern SEP-1 states for stellar-core configs.",
   severity: "warning",
+  specRef: "SEP-1 §Validator Information, ALIAS",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const validators = tomlValue(env, "VALIDATORS");

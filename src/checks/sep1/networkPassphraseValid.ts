@@ -29,6 +29,7 @@ export const networkPassphraseValid: Check = {
   description:
     "If NETWORK_PASSPHRASE is declared, requires it to match a known Stellar network passphrase.",
   severity: "error",
+  specRef: "SEP-1 §General Information, NETWORK_PASSPHRASE",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const passphrase = tomlValue(env, "NETWORK_PASSPHRASE");

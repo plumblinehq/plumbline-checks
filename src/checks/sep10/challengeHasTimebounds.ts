@@ -15,6 +15,7 @@ export const challengeHasTimebounds: Check = {
   description:
     "Requires the decoded challenge transaction to have time bounds with the current time inside them.",
   severity: "error",
+  specRef: "SEP-10 §Response (Success)",
   requires: ["sep10.challenge-decodes"],
   async run(env: Env): Promise<CheckOutcome> {
     const transaction = sep10Context(env).transaction;

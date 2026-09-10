@@ -20,6 +20,7 @@ export const corsHeaders: Check = {
   description:
     "Requires the challenge response to carry the wildcard CORS header, per SEP-10 §Cross-Origin Headers.",
   severity: "error",
+  specRef: "SEP-10 §Cross-Origin Headers",
   requires: ["sep10.challenge-returns-200"],
   async run(env: Env): Promise<CheckOutcome> {
     const context = sep10Context(env);

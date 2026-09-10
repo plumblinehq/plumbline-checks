@@ -20,6 +20,7 @@ export const currencyIssuerOrContract: Check = {
   description:
     "Requires every inline [[CURRENCIES]] entry to declare exactly one of issuer (a valid G... public key) or contract (a valid C... contract id), per SEP-1 §Currency Documentation.",
   severity: "error",
+  specRef: "SEP-1 §Currency Documentation, issuer / contract",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const currencies = currencyEntries(env);

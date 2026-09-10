@@ -15,6 +15,7 @@ export const challengeFirstOpManageData: Check = {
   description:
     "Requires the challenge's first operation to be a Manage Data operation with a non-null source account.",
   severity: "error",
+  specRef: "SEP-10 §Authentication flow",
   requires: ["sep10.challenge-has-operations"],
   async run(env: Env): Promise<CheckOutcome> {
     const transaction = sep10Context(env).transaction;

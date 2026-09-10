@@ -20,6 +20,7 @@ export const errorResponseShape: Check = {
   description:
     "Requests the auth endpoint without the required account parameter and requires an error response with a JSON error field.",
   severity: "warning",
+  specRef: "SEP-10 §Response (Error)",
   requires: ["sep1.toml-parses", "sep10.endpoint-declared"],
   async run(env: Env): Promise<CheckOutcome> {
     const endpoint = webAuthEndpoint(env);

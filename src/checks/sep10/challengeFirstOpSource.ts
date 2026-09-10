@@ -15,6 +15,7 @@ export const challengeFirstOpSource: Check = {
   description:
     "Requires the first Manage Data operation's source account to equal the ephemeral account supplied in the challenge request.",
   severity: "error",
+  specRef: "SEP-10 §Authentication flow",
   requires: ["sep10.challenge-first-op-manage-data"],
   async run(env: Env): Promise<CheckOutcome> {
     const context = sep10Context(env);

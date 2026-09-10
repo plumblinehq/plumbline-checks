@@ -16,6 +16,7 @@ export const tomlCors: Check = {
   description:
     "Requires the Access-Control-Allow-Origin header on the stellar.toml response to be *, as the SEP-1 specification must-sets CORS for the file.",
   severity: "error",
+  specRef: "SEP-1 §Specification, CORS",
   requires: ["sep1.toml-reachable"],
   async run(env: Env): Promise<CheckOutcome> {
     const response = await fetchToml(env);

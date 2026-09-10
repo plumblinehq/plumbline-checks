@@ -24,6 +24,7 @@ export const challengeReturns200: Check = {
   description:
     "Requests a challenge from WEB_AUTH_ENDPOINT with an ephemeral account and requires a 200 response.",
   severity: "error",
+  specRef: "SEP-10 §Response (Success)",
   requires: ["sep1.toml-parses", "sep10.endpoint-declared"],
   async run(env: Env): Promise<CheckOutcome> {
     const endpoint = webAuthEndpoint(env);

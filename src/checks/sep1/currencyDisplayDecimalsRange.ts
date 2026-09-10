@@ -15,6 +15,7 @@ export const currencyDisplayDecimalsRange: Check = {
   description:
     "If a [[CURRENCIES]] entry declares display_decimals, requires it to be an integer in the 0..7 range SEP-1 specifies.",
   severity: "error",
+  specRef: "SEP-1 §Currency Documentation, display_decimals",
   requires: ["sep1.toml-parses"],
   async run(env: Env): Promise<CheckOutcome> {
     const currencies = currencyEntries(env);

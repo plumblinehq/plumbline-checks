@@ -15,6 +15,7 @@ export const challengeSequenceZero: Check = {
   description:
     "Requires the decoded challenge transaction to carry sequence number 0, which SEP-10 calls extremely important.",
   severity: "error",
+  specRef: "SEP-10 §Authentication flow",
   requires: ["sep10.challenge-decodes"],
   async run(env: Env): Promise<CheckOutcome> {
     const transaction = sep10Context(env).transaction;
