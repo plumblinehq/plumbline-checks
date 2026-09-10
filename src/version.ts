@@ -6,4 +6,4 @@
  * untrustworthy. The test suite asserts this matches package.json so it
  * cannot drift.
  */
-export const VERSION = "0.2.2";
+export const VERSION = "0.2.3";
